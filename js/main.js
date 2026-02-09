@@ -383,3 +383,117 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 });
+/* =========================
+   FAQ toggle
+========================= */
+function toggleFaq(btn){
+  const body = btn.nextElementSibling;
+  const isOpen = body.style.display === "block";
+
+  document.querySelectorAll(".faqBody").forEach(b=>{
+    b.style.display = "none";
+  });
+  document.querySelectorAll(".faqBtn i").forEach(i=>{
+    i.textContent = "+";
+  });
+
+  if(!isOpen){
+    body.style.display = "block";
+    const icon = btn.querySelector("i");
+    if(icon) icon.textContent = "–";
+  }
+}
+/* =========================
+   CHOOSE CHARACTER
+========================= */
+function chooseCharacter(name){
+  const comment = document.getElementById("comment");
+  if(!comment) return;
+
+  const lang = localStorage.getItem("lang") || "ru";
+  const prefix = lang === "kz" ? "Кейіпкер" : "Персонаж";
+  const tag = `${prefix}: ${name}`;
+
+  if(!comment.value.includes(tag)){
+    comment.value = comment.value
+      ? comment.value + "\n" + tag
+      : tag;
+  }
+
+  document
+    .getElementById("form")
+    ?.scrollIntoView({ behavior:"smooth" });
+}
+
+/* =========================
+   CHARACTER PREVIEW MODAL
+========================= */
+function openCharPreview(name, imgSrc){
+  const modal = document.getElementById("charModal");
+  const title = document.getElementById("charModalTitle");
+  const img = document.getElementById("charModalImg");
+
+  if(!modal || !title || !img) return;
+
+  title.textContent = name;
+  img.src = imgSrc;
+  img.alt = name;
+
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCharPreview(){
+  const modal = document.getElementById("charModal");
+  if(!modal) return;
+
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
+/* =========================
+   CHOOSE CHARACTER
+========================= */
+function chooseCharacter(name){
+  const comment = document.getElementById("comment");
+  if(!comment) return;
+
+  const lang = localStorage.getItem("lang") || "ru";
+  const prefix = lang === "kz" ? "Кейіпкер" : "Персонаж";
+  const tag = `${prefix}: ${name}`;
+
+  if(!comment.value.includes(tag)){
+    comment.value = comment.value
+      ? comment.value + "\n" + tag
+      : tag;
+  }
+
+  document
+    .getElementById("form")
+    ?.scrollIntoView({ behavior:"smooth" });
+}
+
+/* =========================
+   CHARACTER PREVIEW MODAL
+========================= */
+function openCharPreview(name, imgSrc){
+  const modal = document.getElementById("charModal");
+  const title = document.getElementById("charModalTitle");
+  const img = document.getElementById("charModalImg");
+
+  if(!modal || !title || !img) return;
+
+  title.textContent = name;
+  img.src = imgSrc;
+  img.alt = name;
+
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCharPreview(){
+  const modal = document.getElementById("charModal");
+  if(!modal) return;
+
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+}
